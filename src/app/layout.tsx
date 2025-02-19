@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
-import { Geist } from "next/font/google"
+import { Roboto } from "next/font/google"
 
-const geist = Geist({ subsets: ["latin"] })
+const roboto = Roboto({ subsets: ["latin"], weight: "400" })
 
 import "./globals.css"
 
@@ -17,7 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geist.className}`}>{children}</body>
+      <body className={`${roboto.className}`}>{children}</body>
     </html>
   )
 }
