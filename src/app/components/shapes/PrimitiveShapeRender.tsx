@@ -33,7 +33,11 @@ export const PrimitiveShapeRender: FC<PrimitiveShapeRenderProps> = ({
           count={indices.length}
         />
       </bufferGeometry>
-      <meshBasicMaterial color={shape.color} side={THREE.DoubleSide} />
+      <meshPhongMaterial
+        color={shape.color}
+        side={THREE.DoubleSide}
+        flatShading={true}
+      />
     </mesh>
   )
 }

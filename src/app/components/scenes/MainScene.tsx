@@ -24,6 +24,12 @@ export const MainScene = () => {
           color: new Color("#3030FF"),
         }}
       />
+      <ambientLight />
+      <directionalLight
+        position={[10, 10, 10]}
+        castShadow
+        intensity={Math.PI * 2}
+      />
       <OrbitControls makeDefault />
     </Canvas>
   )
