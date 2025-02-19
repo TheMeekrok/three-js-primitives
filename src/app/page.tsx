@@ -1,34 +1,24 @@
-"use client";
-
-import {
-  Box,
-  Drawer,
-  IconButton,
-  List,
-  ListItem,
-  ListItemText,
-} from "@mui/material";
-import { PrimitivesCanvas } from "./components/PrimitivesCanvas";
+import { Box } from "@mui/material"
+import { MainScene } from "./components/scenes"
+import { Sidebar } from "./components/ui"
+import { ShapesProvider } from "@/shared/providers"
 
 const Home = () => {
   return (
-    <Box>
-      <Drawer anchor="left" variant="permanent">
-        <List sx={{ width: "100%", bgcolor: "background.paper" }}>
-          {[1, 2, 3].map((value) => (
-            <ListItem
-              key={value}
-              disableGutters
-              secondaryAction={<IconButton aria-label="comment"></IconButton>}
-            >
-              <ListItemText primary={`Line item ${value}`} />
-            </ListItem>
-          ))}
-        </List>
-      </Drawer>
-      <PrimitivesCanvas />
-    </Box>
-  );
-};
+    <ShapesProvider>
+      <Box sx={{ height: "100vh" }}>
+        <Sidebar />
+        <Box
+          sx={{
+            display: "flex",
+            height: "100%",
+          }}
+        >
+          <MainScene />
+        </Box>
+      </Box>
+    </ShapesProvider>
+  )
+}
 
-export default Home;
+export default Home
