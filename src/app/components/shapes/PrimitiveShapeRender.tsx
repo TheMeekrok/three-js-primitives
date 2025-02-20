@@ -1,7 +1,7 @@
 import { useShapesContext } from "@/shared/providers"
 import { PrimitiveShape } from "@/shared/types"
-import { getIndices, getVertices } from "@/shared/utils"
-import { FC } from "react"
+import { getIndices, getRandomColors, getVertices } from "@/shared/utils"
+import { FC, useMemo } from "react"
 import * as THREE from "three"
 
 export interface PrimitiveShapeRenderProps {
@@ -11,8 +11,17 @@ export interface PrimitiveShapeRenderProps {
 export const PrimitiveShapeRender: FC<PrimitiveShapeRenderProps> = ({
   shape,
 }) => {
-  const vertices = getVertices(shape.wireframe)
-  const indices = getIndices(shape.wireframe)
+  const vertices = useMemo(
+    () => getVertices(shape.wireframe),
+    [shape.wireframe]
+  )
+
+  const indices = useMemo(() => getIndices(shape.wireframe), [shape.wireframe])
+
+  const colors = useMemo(
+    () => getRandomColors(shape.wireframe),
+    [shape.wireframe]
+  )
 
   const { selectOne } = useShapesContext()
 
@@ -36,9 +45,15 @@ export const PrimitiveShapeRender: FC<PrimitiveShapeRenderProps> = ({
           itemSize={1}
           count={indices.length}
         />
+        <bufferAttribute
+          attach="attributes-color"
+          array={colors}
+          itemSize={3}
+          count={vertices.length / 3}
+        />
       </bufferGeometry>
       <meshPhongMaterial
-        color={shape.color}
+        vertexColors={true}
         side={THREE.DoubleSide}
         flatShading={true}
         wireframe={shape.isSelected}

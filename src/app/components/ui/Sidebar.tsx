@@ -20,7 +20,8 @@ import CategoryIcon from "@mui/icons-material/Category"
 import DeleteIcon from "@mui/icons-material/Delete"
 
 export const Sidebar = () => {
-  const { shapes, selectOne, removeShape, removeAll } = useShapesContext()
+  const { shapes, selectOne, removeShape, removeAll, unselectAll } =
+    useShapesContext()
 
   const [dialogIsOpened, setDialogIsOpened] = useState(false)
 
@@ -42,6 +43,7 @@ export const Sidebar = () => {
           height: "100%",
           padding: "12px 20px",
         }}
+        onClick={() => unselectAll()}
       >
         <List sx={{ flexGrow: 1, overflow: "auto" }}>
           {shapes.length === 0 && (
@@ -61,11 +63,17 @@ export const Sidebar = () => {
                     bgcolor: !shape.isSelected ? "#1976d233" : "#1976d2",
                   },
                 }}
-                onClick={() => selectOne(shape.id)}
+                onClick={(event) => {
+                  event.stopPropagation()
+                  if (event) selectOne(shape.id)
+                }}
                 secondaryAction={
                   <IconButton
                     aria-label="delete"
-                    onClick={() => removeShape(shape.id)}
+                    onClick={(event) => {
+                      event.stopPropagation()
+                      removeShape(shape.id)
+                    }}
                   >
                     <DeleteIcon />
                   </IconButton>
