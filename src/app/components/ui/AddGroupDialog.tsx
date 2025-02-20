@@ -68,6 +68,7 @@ export const AddGroupDialog = (props: DialogProps) => {
       <DialogTitle>Add primitives group</DialogTitle>
       <DialogContent>
         <FormControl
+          variant="standard"
           fullWidth
           sx={{
             display: "flex",
@@ -94,7 +95,7 @@ export const AddGroupDialog = (props: DialogProps) => {
           <TextField
             fullWidth
             label="Length"
-            variant="outlined"
+            variant="standard"
             onChange={(event) => {
               setFormData((prev) => ({
                 ...prev,
@@ -106,7 +107,7 @@ export const AddGroupDialog = (props: DialogProps) => {
           <TextField
             fullWidth
             label="Width"
-            variant="outlined"
+            variant="standard"
             onChange={(event) => {
               setFormData((prev) => ({
                 ...prev,
@@ -118,7 +119,7 @@ export const AddGroupDialog = (props: DialogProps) => {
           <TextField
             fullWidth
             label="Height"
-            variant="outlined"
+            variant="standard"
             onChange={(event) => {
               setFormData((prev) => ({
                 ...prev,
@@ -130,7 +131,7 @@ export const AddGroupDialog = (props: DialogProps) => {
           <TextField
             fullWidth
             label="Number"
-            variant="outlined"
+            variant="standard"
             onChange={(event) => {
               setFormData((prev) => ({
                 ...prev,
