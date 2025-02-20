@@ -2,10 +2,12 @@
 
 import { Canvas } from "@react-three/fiber"
 import { PrimitiveShapeRender } from "../shapes"
-import { Color } from "three"
 import { OrbitControls } from "@react-three/drei"
+import { useShapesContext } from "@/shared/providers"
 
 export const MainScene = () => {
+  const { shapes } = useShapesContext()
+
   return (
     <Canvas
       camera={{
@@ -17,16 +19,12 @@ export const MainScene = () => {
         width: "100%",
       }}
     >
-      <PrimitiveShapeRender
-        shape={{
-          id: 0,
-          wireframe: { type: "box", width: 7, height: 10, length: 7 },
-          color: new Color("#3030FF"),
-        }}
-      />
+      {shapes.map((shape) => (
+        <PrimitiveShapeRender key={shape.id} shape={shape} />
+      ))}
       <ambientLight />
       <directionalLight
-        position={[10, 10, 10]}
+        position={[1000, 1000, 1000]}
         castShadow
         intensity={Math.PI * 2}
       />

@@ -16,8 +16,9 @@ export type PrimitiveShapeWireframe = {
 }
 
 export type PrimitiveShape = {
-  id: number
+  id: string
   wireframe: PrimitiveShapeWireframe
   transform?: PrimitiveShapeTransform
   color: Color
+  isSelected?: boolean
 }

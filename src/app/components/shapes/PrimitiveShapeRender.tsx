@@ -1,3 +1,4 @@
+import { useShapesContext } from "@/shared/providers"
 import { PrimitiveShape } from "@/shared/types"
 import { getIndices, getVertices } from "@/shared/utils"
 import { FC } from "react"
@@ -13,11 +14,14 @@ export const PrimitiveShapeRender: FC<PrimitiveShapeRenderProps> = ({
   const vertices = getVertices(shape.wireframe)
   const indices = getIndices(shape.wireframe)
 
+  const { selectOne } = useShapesContext()
+
   return (
     <mesh
       position={shape.transform?.position}
       rotation={shape.transform?.rotation}
       scale={shape.transform?.scale}
+      onClick={() => selectOne(shape.id)}
     >
       <bufferGeometry>
         <bufferAttribute
@@ -37,6 +41,7 @@ export const PrimitiveShapeRender: FC<PrimitiveShapeRenderProps> = ({
         color={shape.color}
         side={THREE.DoubleSide}
         flatShading={true}
+        wireframe={shape.isSelected}
       />
     </mesh>
   )

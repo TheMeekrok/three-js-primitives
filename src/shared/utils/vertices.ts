@@ -44,6 +44,6 @@ export const getPyramidVertices = (wireframe: PrimitiveShapeWireframe) => {
     [halfWidth, -halfHeight, halfLength],
     [-halfWidth, -halfHeight, halfLength],
 
-    [0, wireframe.height, 0],
+    [0, halfHeight, 0],
   ]
 }
