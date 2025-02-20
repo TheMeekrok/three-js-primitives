@@ -7,7 +7,6 @@ import "./globals.css"
 
 export const metadata: Metadata = {
   title: "three-js-primitives",
-  description: "",
 }
 
 export default function RootLayout({
